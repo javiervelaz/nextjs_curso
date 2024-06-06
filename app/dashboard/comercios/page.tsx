@@ -16,7 +16,7 @@ const ComerciosPage = () => {
       const response = await axios.post('https://comercios.vercel.app/search', {
         query: search,
         city: city,
-        radius: 2000
+        radius: 5000
       });
       setMessage('Data successfully saved and exported to Google Sheets');
     } catch (error) {
