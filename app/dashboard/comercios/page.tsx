@@ -13,7 +13,7 @@ const ComerciosPage = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:4000/search', {
+      const response = await axios.post('https://comercios.vercel.app/search', {
         query: search,
         city: city,
         radius: 2000
@@ -27,10 +27,10 @@ const ComerciosPage = () => {
 
   return (
     <div className={`${styles.container} ${lusitana.className}`}>
-      <h1>Search and Export</h1>
+      <h1>Buscar comercios</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles['form-group']}>
-          <label htmlFor="search">Search Query:</label>
+          <label htmlFor="search">Buscar comercio por rubro.:</label>
           <input
             type="text"
             id="search"
@@ -40,7 +40,7 @@ const ComerciosPage = () => {
           />
         </div>
         <div className={styles['form-group']}>
-          <label htmlFor="city">City:</label>
+          <label htmlFor="city">Ciudad:</label>
           <input
             type="text"
             id="city"
@@ -49,7 +49,7 @@ const ComerciosPage = () => {
             required
           />
         </div>
-        <button type="submit" className={styles.button}>Send</button>
+        <button type="submit" className={styles.button}>Exportar</button>
       </form>
       {message && <p className={styles.message}>{message}</p>}
     </div>
