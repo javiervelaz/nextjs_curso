@@ -1,23 +1,36 @@
 "use client";
 
+
 import { lusitana } from '@/app/ui/fonts';
 import axios from 'axios';
-import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { FormEvent, useEffect, useState } from 'react';
 import styles from './page.module.css';
 
 const ComerciosPage = () => {
   const [search, setSearch] = useState('');
   const [city, setCity] = useState('');
   const [message, setMessage] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      router.push('/auth'); // Redirige al login si no hay token
+    }
+  }, [router]);
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    const token = localStorage.getItem('token');
     try {
-      const response = await axios.post('https://comercios.vercel.app/search', {
+      //const response = await axios.post('https://comercios.vercel.app/search', {
+      const response = await axios.post('http://localhost:3001/search', {
         query: search,
         city: city,
         radius: 5000
-      });
+      },{ headers: { 'x-access-token': token } 
+    });
       setMessage('Data successfully saved and exported to Google Sheets');
     } catch (error) {
       setMessage('An error occurred');
