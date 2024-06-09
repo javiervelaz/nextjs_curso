@@ -24,7 +24,8 @@ const LoginPage = () => {
   const handleLogin = async (event: FormEvent) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/login', { username, password });
+      //const response = await axios.post('http://localhost:3001/login', { username, password });
+      const response = await axios.post('https://comercios.vercel.app/search', { username, password });
       localStorage.setItem('token', response.data.token);
       router.push('/dashboard/comercios'); // Redirige a tu pantalla de búsqueda o dashboard
     } catch (err) {
