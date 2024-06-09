@@ -24,8 +24,8 @@ const ComerciosPage = () => {
     event.preventDefault();
     const token = localStorage.getItem('token');
     try {
-      //const response = await axios.post('https://comercios.vercel.app/search', {
-      const response = await axios.post('http://localhost:3001/search', {
+      const response = await axios.post('https://comercios.vercel.app/search', {
+      //const response = await axios.post('http://localhost:3001/search', {
         query: search,
         city: city,
         radius: 5000
